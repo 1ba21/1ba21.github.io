@@ -1,11 +1,9 @@
-const video = document.getElementById('video');
-const videoItems = document.querySelectorAll('.video-list li');
+body {
+    margin: 0;
+    overflow: hidden;
+}
 
-videoItems.forEach(item => {
-    item.addEventListener('click', function () {
-        const videoSrc = this.getAttribute('data-video');
-        video.src = videoSrc;
-        video.load();
-        video.play();
-    });
-});
+#game-container {
+    width: 100vw;
+    height: 100vh;
+}

@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>114514</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页小游戏集锦</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <h1>我的第一个114514</h1>
-    <p>我的第一个114514</p>
+    <h1>网页小游戏集锦</h1>
+
+    <!-- 猜数字游戏 -->
+    <div class="game">
+        <h2>猜数字游戏</h2>
+        <p>我已经想好了一个 1 到 100 之间的数字，你可以开始猜啦！</p>
+        <input type="number" id="guessInput" placeholder="输入你的猜测">
+        <button onclick="checkGuess()">提交猜测</button>
+        <p id="guessResult"></p>
+    </div>
+
+    <!-- 石头剪刀布游戏 -->
+    <div class="game">
+        <h2>石头剪刀布游戏</h2>
+        <p>请选择你的出招：</p>
+        <button onclick="playGame('石头')">石头</button>
+        <button onclick="playGame('剪刀')">剪刀</button>
+        <button onclick="playGame('布')">布</button>
+        <p id="rpsResult"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

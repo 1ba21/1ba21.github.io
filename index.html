@@ -15,7 +15,38 @@
     <div class="game">
         <h2>猜数字游戏</h2>
         <p>我已经想好了一个 1 到 100 之间的数字，你可以开始猜啦！</p>
-        <input type="number" id="guessInput" placeholder="输入你的猜测">
+        // 定义秘密数字，初始化为 1 到 100 之间的随机整数
+let secretNumber = Math.floor(Math.random() * 100) + 1;
+// 记录玩家猜测的次数
+let attempts = 0;
+
+function checkGuess() {
+    // 获取玩家输入的猜测数字
+    const guess = parseInt(document.getElementById('guessInput').value);
+    // 获取用于显示猜测结果的 HTML 元素
+    const resultElement = document.getElementById('guessResult');
+
+    // 检查输入是否为有效的数字
+    if (isNaN(guess)) {
+        resultElement.textContent = '请输入一个有效的数字！';
+        return;
+    }
+
+    // 每猜测一次，尝试次数加 1
+    attempts++;
+
+    // 判断猜测结果
+    if (guess < secretNumber) {
+        resultElement.textContent = '猜的数字太小了，再试试！你已经猜了 ' + attempts + ' 次。';
+    } else if (guess > secretNumber) {
+        resultElement.textContent = '猜的数字太大了，再试试！你已经猜了 ' + attempts + ' 次。';
+    } else {
+        resultElement.textContent = '恭喜你，猜对了！你一共用了 ' + attempts + ' 次。';
+        // 猜对后重置游戏
+        secretNumber = Math.floor(Math.random() * 100) + 1;
+        attempts = 0;
+    }
+}<input type="number" id="guessInput" placeholder="输入你的猜测">
         <button onclick="checkGuess()">提交猜测</button>
         <p id="guessResult"></p>
     </div>
@@ -27,7 +58,35 @@
         <button onclick="playGame('石头')">石头</button>
         <button onclick="playGame('剪刀')">剪刀</button>
         <button onclick="playGame('布')">布</button>
-        <p id="rpsResult"></p>
+        function playGame(playerChoice) {
+    // 定义所有可能的出招选项
+    const choices = ['石头', '剪刀', '布'];
+    // 随机生成电脑的出招
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    // 获取用于显示游戏结果的 HTML 元素
+    const resultElement = document.getElementById('rpsResult');
+
+    let result;
+    // 判断平局情况
+    if (playerChoice === computerChoice) {
+        result = '平局！你和电脑都出了 ' + playerChoice + '。';
+    } 
+    // 判断玩家获胜的情况
+    else if (
+        (playerChoice === '石头' && computerChoice === '剪刀') ||
+        (playerChoice === '剪刀' && computerChoice === '布') ||
+        (playerChoice === '布' && computerChoice === '石头')
+    ) {
+        result = '你赢了！你出了 ' + playerChoice + '，电脑出了 ' + computerChoice + '。';
+    } 
+    // 其他情况为玩家输了
+    else {
+        result = '你输了！你出了 ' + playerChoice + '，电脑出了 ' + computerChoice + '。';
+    }
+
+    // 在页面上显示游戏结果
+    resultElement.textContent = result;
+}<p id="rpsResult"></p>
     </div>
 
     <script src="script.js"></script>
